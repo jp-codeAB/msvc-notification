@@ -38,7 +38,6 @@ public class GatewayAuthFilter extends OncePerRequestFilter {
         } catch (Exception e) {
             logger.error("Error creating AuthUser from Gateway headers: " + e.getMessage());
         }
-
         filterChain.doFilter(request, response);
     }
 }

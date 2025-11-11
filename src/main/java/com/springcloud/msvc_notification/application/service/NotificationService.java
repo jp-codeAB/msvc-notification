@@ -117,7 +117,7 @@ public class NotificationService implements IEventHandlerPort, INotificationUseC
                         event.orderId());
                 break;
 
-            case "DELIVERED": // 💡 Nuevo case para el flujo de ADMIN
+            case "DELIVERED":
                 subject = "🥳 ¡Orden Entregada! Gracias por su compra en ARKA.";
                 body = String.format(
                         "Estimado cliente,\n\n" +
@@ -128,7 +128,7 @@ public class NotificationService implements IEventHandlerPort, INotificationUseC
                         event.orderId());
                 break;
 
-            case "CANCELLED": // 💡 Nuevo case para el flujo de CLIENTE
+            case "CANCELLED":
                 subject = "🚫 Su Orden ARKA ha sido Cancelada.";
                 body = String.format(
                         "Estimado cliente,\n\n" +
@@ -153,7 +153,6 @@ public class NotificationService implements IEventHandlerPort, INotificationUseC
             emailServicePort.sendEmail(request);
         } catch (Exception e) {
             log.error("Error sending email for Order ID: {}. Triggering stream retry/DLQ.", event.orderId());
-            // Es crucial relanzar una excepción aquí para que Spring Cloud Stream maneje el reintento/DLQ
             throw new BusinessException("Failed to process event notification and send email.", e);
         }
     }

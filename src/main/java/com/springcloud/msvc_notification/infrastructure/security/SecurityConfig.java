@@ -25,9 +25,8 @@ public class SecurityConfig {
                 .addFilterBefore(new GatewayAuthFilter(), UsernamePasswordAuthenticationFilter.class)
 
                 .authorizeHttpRequests(auth -> auth
-                        // Permite acceso a /notifications/internal/email solo a ADMIN
                         .requestMatchers("/notifications/internal/**").hasRole("ADMIN")
-                        .anyRequest().permitAll() // Permite otras rutas que no pasaron por el Gateway (ej: Health Checks)
+                        .anyRequest().permitAll()
                 )
                 .build();
     }

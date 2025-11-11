@@ -33,7 +33,6 @@ public class EmailNotificationAdapter implements IEmailServicePort {
             mailSender.send(message);
             log.info("Email was sent successfully to: {}", request.getToEmail());
         } catch (Exception e) {
-            // Se propaga una excepción de negocio/compartida para un manejo coherente
             log.error("ERROR sending email to {}: {}", request.getToEmail(), e.getMessage());
             throw new BusinessException("Failed to send email notification.", e);
         }

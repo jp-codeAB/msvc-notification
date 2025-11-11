@@ -1,6 +1,5 @@
 package com.springcloud.msvc_notification.infrastructure.web.controller;
 
-
 import com.springcloud.msvc_notification.domain.model.Notification;
 import com.springcloud.msvc_notification.domain.ports.in.INotificationUseCase;
 import com.springcloud.msvc_notification.infrastructure.mapper.NotificationWebMapper;

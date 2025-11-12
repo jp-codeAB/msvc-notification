@@ -13,6 +13,7 @@ WORKDIR /app
 COPY --from=builder /app/build/libs/*.jar app.jar
 
 EXPOSE 8000
+HEALTHCHECK CMD curl -f http://localhost:8000/actuator/health || exit 1
 
 ENV SPRING_PROFILES_ACTIVE=dev \
     CONFIG_SERVER_URI=http://config-server:8888 \
@@ -21,8 +22,9 @@ ENV SPRING_PROFILES_ACTIVE=dev \
     RABBITMQ_PORT=5672 \
     RABBITMQ_USER=guest \
     RABBITMQ_PASS=guest \
+    MAIL_HOST=smtp.gmail.com \
+    MAIL_PORT=587 \
     MAIL_USER=arkanotification@gmail.com \
     MAIL_PASSWORD=akbv_rpvx_ygzs_ylit
 
 ENTRYPOINT ["java", "-jar", "app.jar"]
-

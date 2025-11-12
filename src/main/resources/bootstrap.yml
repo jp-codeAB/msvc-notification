@@ -10,3 +10,10 @@ spring:
         initial-interval: 1000
         max-attempts: 6
         multiplier: 1.5
+eureka:
+  client:
+    service-url:
+      defaultZone: ${EUREKA_URI:http://eureka-server:8761/eureka/}
+  instance:
+    prefer-ip-address: true
+    instance-id: ${spring.application.name}:${random.uuid}

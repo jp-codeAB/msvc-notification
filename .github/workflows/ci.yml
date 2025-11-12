@@ -1,4 +1,4 @@
-name: CI msvc-notification
+name: CI-msvc-notification
 
 on:
   push:

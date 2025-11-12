@@ -1,8 +1,10 @@
-name: CD - msvc-notification
+name: CD-msvc-notification
 
 on:
-  push:
-    branches: [ "main" ]
+  workflow_run:
+    workflows: ["CI-msvc-notification"]
+    types:
+      - completed
 
 jobs:
   docker:
